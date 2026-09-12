@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/ResumeInput.jsx</title>
+    <title>Code coverage report for src/utils/validation.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/components</a> ResumeInput.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> validation.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -84,8 +84,28 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,37 +116,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function ResumeInput({ resume, setResume }) {
-  return (
-    &lt;div className="input-group"&gt;
-      &lt;div className="input-label-row"&gt;
-        &lt;label htmlFor="resume"&gt;Your Resume&lt;/label&gt;
-        &lt;span className="input-count"&gt;Required&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;p className="input-help" id="resume-help"&gt;Include your recent roles, skills, and measurable wins.&lt;/p&gt;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export function validateInputs(resume, jobDescription) {
+  if (!resume?.trim()) {
+    return "Please enter your resume before analyzing.";
+  }
 &nbsp;
-      &lt;textarea
-        id="resume"
-        value={resume}
-        onChange={(event) =&gt; setResume(event.target.value)}
-        placeholder="Paste your resume content here..."
-        rows="9"
-        aria-describedby="resume-help"
-      /&gt;
-    &lt;/div&gt;
-  );
+  if (!jobDescription?.trim()) {
+    return "Please enter a job description.";
+  }
+&nbsp;
+  return "";
 }
 &nbsp;
-export default ResumeInput;</pre></td></tr></table></pre>
+export function isValidAnalysis(result) {
+  return (
+    result &amp;&amp;
+    Number.isInteger(result.matchScore) &amp;&amp;
+    result.matchScore &gt;= 0 &amp;&amp;
+    result.matchScore &lt;= 100 &amp;&amp;
+    Array.isArray(result.matchedSkills) &amp;&amp;
+    result.matchedSkills.every((skill) =&gt; typeof skill === "string") &amp;&amp;
+    Array.isArray(result.missingSkills) &amp;&amp;
+    result.missingSkills.every((skill) =&gt; typeof skill === "string") &amp;&amp;
+    Array.isArray(result.suggestions) &amp;&amp;
+    result.suggestions.length &gt;= 3 &amp;&amp;
+    result.suggestions.length &lt;= 5 &amp;&amp;
+    result.suggestions.every((suggestion) =&gt; typeof suggestion === "string") &amp;&amp;
+    typeof result.summary === "string" &amp;&amp;
+    result.summary.trim().length &gt; 0
+  );
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
