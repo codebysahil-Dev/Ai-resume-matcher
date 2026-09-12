@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import App from "./app";
-import { analyzeResume } from "./services/aiService";
+import App from "./App";
+import { analyzeResume } from "./services/api";
 
-vi.mock("./services/aiService", () => ({
+vi.mock("./services/api", () => ({
   analyzeResume: vi.fn(),
 }));
 

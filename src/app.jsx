@@ -1,10 +1,11 @@
 import { useState } from "react";
 import ResumeInput from "./components/ResumeInput";
 import JobInput from "./components/JobInput";
-import AnalysisResult from "./components/AnalysisResult";
+import Results from "./components/Results";
 import LoadingState from "./components/LoadingState";
 import ErrorMessage from "./components/ErrorMessage";
-import { analyzeResume } from "./services/aiService";
+import { analyzeResume } from "./services/api";
+import { validateInputs } from "./utils/validation";
 
 function App() {
   const [resume, setResume] = useState("");
@@ -19,13 +20,9 @@ function App() {
     setError("");
     setResult(null);
 
-    if (!resume.trim()) {
-      setError("Please enter your resume before analyzing.");
-      return;
-    }
-
-    if (!jobDescription.trim()) {
-      setError("Please enter a job description.");
+    const validationError = validateInputs(resume, jobDescription);
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
@@ -92,7 +89,7 @@ function App() {
 
       {loading && <LoadingState />}
 
-      {result && !loading && <AnalysisResult result={result} />}
+      {result && !loading && <Results result={result} />}
     </main>
   );
 }

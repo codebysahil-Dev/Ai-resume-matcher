@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import AnalysisResult from "./AnalysisResult";
+import Results from "./Results";
 import ErrorMessage from "./ErrorMessage";
 import JobInput from "./JobInput";
 import ResumeInput from "./ResumeInput";
@@ -38,7 +38,7 @@ describe("display components", () => {
 
   it("displays every analysis result section", () => {
     render(
-      <AnalysisResult
+      <Results
         result={{
           matchScore: 87,
           matchedSkills: ["React", "Testing"],

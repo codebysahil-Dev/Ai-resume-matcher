@@ -1,4 +1,4 @@
-function AnalysisResult({ result }) {
+function Results({ result }) {
   return (
     <section className="results" aria-labelledby="analysis-heading">
       <div className="results-heading">
@@ -63,4 +63,4 @@ function AnalysisResult({ result }) {
   );
 }
 
-export default AnalysisResult;
+export default Results;

@@ -69,10 +69,13 @@ ai-resume-matcher/
 ├── src/
 │   ├── components/
 │   ├── services/
+│   │   └── api.js
+│   ├── utils/
+│   │   └── validation.js
 │   ├── test/
 │   ├── App.jsx
 │   ├── main.jsx
-│   └── style.css
+│   └── index.css
 │
 ├── .env.example
 ├── .gitignore

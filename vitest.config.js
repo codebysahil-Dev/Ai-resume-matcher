@@ -13,7 +13,7 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],
-      include: ["src/app.jsx", "src/components/**/*.jsx"],
+      include: ["src/App.jsx", "src/components/**/*.jsx", "src/services/**/*.js", "src/utils/**/*.js"],
       thresholds: {
         lines: 50,
         functions: 50,
