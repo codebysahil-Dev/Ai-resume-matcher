@@ -1,0 +1,15 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import Demo from "./Demo";
+
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+	throw new Error("The playground root element was not found.");
+}
+
+createRoot(rootElement).render(
+	<StrictMode>
+		<Demo />
+	</StrictMode>,
+);

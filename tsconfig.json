@@ -8,6 +8,11 @@
 
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+    "@/*": ["./src/*"]
+    },
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -17,9 +22,14 @@
 
     "strict": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false,
-
-    "include": ["src/**/*.js", "src/**/*.jsx", "api/**/*.js"],
-    "exclude": ["node_modules", "dist", "coverage"]
-  }
+    "noUnusedParameters": false
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "playground/**/*.ts",
+    "playground/**/*.tsx",
+    "api/**/*.js"
+  ],
+  "exclude": ["node_modules", "dist", "coverage"]
 }
